@@ -1,0 +1,39 @@
+{% extends "employee_app/base.html" %}
+{% block content %}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td>Full Name</td>
+        <td>Employee ID</td>
+        <td>Mail ID</td>
+        <td>Designation</td>
+        <td>
+            <a href="{% url 'empform' %}" class="btn btn-outline-success">
+                <i class="fas fa-plus">Add new</i>
+            </a>
+        </td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employeeList %}
+            <tr>
+                <td>{{employee.fullname}}</td>
+                <td>{{employee.emp_id}}</td>
+                <td>{{employee.mail_id}}</td>
+                <td>{{employee.position}}</td>
+                <td>
+                    <a href="{% url 'employeeupdate' employee.id%}" class="btn text-secondary px-0">
+                        <i class="far fa-edit fa-lg"></i>
+                    </a>
+                    <form action="{% url 'empdel' employee.id%}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">
+                            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content%}

@@ -1,0 +1,24 @@
+{% extends "employee_app/base.html" %}
+
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    <p>Employee Name</p>{{form.fullname}} <br> <br>
+    <p>Employee ID</p>{{form.emp_id}} <br> <br>
+    <p>Mail ID</p>{{form.mail_id}} <br> <br>
+    <p>Designation</p>{{form.position}}<br> <br>
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+                Submit</button>
+        </div>
+        <div class = "col md 4">
+            <a href="{% url 'emplist'%}" class="btn btn secondary btn-block btn-lg">
+                <i class="fas fa-stream">Back to list</i> 
+            </a>
+        </div>
+    </div>
+
+</form>
+{% endblock content %}
